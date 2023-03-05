@@ -25,8 +25,8 @@ const renderposts=(posts)=>
     })
 }
 
-const URL="https://jsonplaceholder.typicode.com/posts";
-
+const URL="https://y57rti8ng4.execute-api.ap-south-1.amazonaws.com/login";
+// 
 postLists.addEventListener('click',(e)=>
 {
 // console.log(e.target.id);
@@ -44,30 +44,82 @@ if(editpostpressed)
 })
 
 //method GET
-fetch(URL)
-.then(res=>res.json())
-.then(data=>renderposts(data));
+// fetch(URL)
+// .then(res=>res.json())
+// .then(data=>renderposts(data));
 
 // Method POST//
 addpostform.addEventListener('submit',(e)=>{
     e.preventDefault()
-    // console.log(titleval.value);
-    // console.log(titleval.value);
-fetch(URL,{
-    method: 'POST',
-    headers: myHeaders,
-    body: JSON.stringify({
-        body: descval.value,
-        title: titleval.value
-      })
-    })
-    .then(response => response.json())
-    .then(result => 
-      {
-        console.log(result);
-        const resArr=[];
-        resArr.push(result)
-        renderposts(resArr);
-      })
-    .catch(error => console.log('error', error));
-})
+    console.log(titleval.value);
+    console.log(descval.value);
+    
+
+    fetch(URL, {
+      mode: 'no-cors',
+      credentials: 'include',
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify({
+                otp: descval.value,
+                phone: titleval.value
+              })
+            })
+  })
+  .then(response => response.json())
+  .then(json => console.log(json))
+  .catch(error => console.log('Authorization failed : ' + error.message));
+
+
+// fetch(URL,{
+//   mode: 'no-cors',
+//   credentials: 'include',
+//     method: 'POST',
+//     headers: myHeaders,
+//     body: JSON.stringify({
+//         otp: descval.value,
+//         phone: titleval.value
+//       })
+//     })
+//     .then(response => response.json())
+//     .then(result => 
+//       {
+//         console.log(result);
+//         // const resArr=[];
+//         // resArr.push(result)
+//         // renderposts(resArr);
+//       })
+//     .catch(error => console.log('error', error));
+// })
+
+
+
+
+
+
+
+
+
+
+// addpostform.addEventListener('submit',(e)=>{
+//   e.preventDefault()
+//   // console.log(titleval.value);
+//   // console.log(titleval.value);
+// fetch(URL,{
+//   method: 'POST',
+//   headers: myHeaders,
+//   body: JSON.stringify({
+//       body: descval.value,
+//       title: titleval.value
+//     })
+//   })
+//   .then(response => response.json())
+//   .then(result => 
+//     {
+//       console.log(result);
+//       const resArr=[];
+//       resArr.push(result)
+//       renderposts(resArr);
+//     })
+//   .catch(error => console.log('error', error));
+// })
